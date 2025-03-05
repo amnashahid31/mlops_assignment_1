@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - dev
-
+  workflow_dispatch:
 jobs:
   flake8:
     runs-on: ubuntu-latest
