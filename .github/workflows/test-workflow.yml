@@ -29,4 +29,5 @@ jobs:
       
       - name: Run Tests
         run: |
-          python -m unittest discover -s . -p 'test_model.py'
+          python -m unittest discover -s tests -p 'test_model.py'
+
