@@ -8,6 +8,7 @@ def test_model(test_data_path):
     # Load the saved model and scaler
     model = joblib.load("model/box_office_revenue_prediction_model.pkl")
     scaler = joblib.load("model/scaler.pkl")
+    
     # Load and preprocess test data
     test_df = pd.read_csv(test_data_path, encoding='latin-1')
     test_df_processed = preprocess_data(test_df)
