@@ -6,9 +6,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from xgboost import XGBRegressor
 import joblib
 import warnings
-
 warnings.filterwarnings('ignore')
-
 
 def preprocess_data(df):
     # Remove unnecessary columns
@@ -55,45 +53,36 @@ def preprocess_data(df):
     
     return df
 
-
 def prepare_features(df):
     features = df.drop(['title', 'domestic_revenue'], axis=1)
     target = df['domestic_revenue'].values
     return features, target
 
-
 def train_model():
     # Load data
     df = pd.read_csv('data/boxoffice.csv', encoding='latin-1')
-    
     # Preprocess data
     df_processed = preprocess_data(df)
-    
     # Prepare features and target
     features, target = prepare_features(df_processed)
-    
     # Split data
     X_train, X_val, Y_train, Y_val = train_test_split(
         features, target,
         test_size=0.1,
         random_state=22
     )
-    
     # Scale features
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_val_scaled = scaler.transform(X_val)
-    
     # Train model
     model = XGBRegressor()
     model.fit(X_train_scaled, Y_train)
-    
     # Save model and scaler
     joblib.dump(model, "model/box_office_revenue_prediction_model.pkl")
     joblib.dump(scaler, "model/scaler.pkl")
     
     return model, scaler, X_val_scaled, Y_val
-
 
 if __name__ == "__main__":
     model, scaler, X_val, Y_val = train_model()
