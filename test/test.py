@@ -3,6 +3,7 @@ import pandas as pd
 from model import preprocess_data, prepare_features
 from sklearn.metrics import mean_absolute_error as mae
 
+
 def test_model(test_data_path):
     # Load the saved model and scaler
     model = joblib.load("model/box_office_revenue_prediction_model.pkl")
@@ -27,7 +28,7 @@ def test_model(test_data_path):
     
     return predictions
 
+
 if __name__ == "__main__":
-    # Test the model
     test_data_path = 'model/boxoffice.csv'
     predictions = test_model(test_data_path)
