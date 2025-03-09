@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "afnannaseem837/mlops-a01"
+        DOCKER_IMAGE = "fatimaqurban/mllops-assignment-1:v1"
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds') // From Jenkins credentials
     }
     stages {
@@ -38,7 +38,7 @@ pipeline {
                     The Docker image has been built and pushed to Docker Hub.
                     Image: ${DOCKER_IMAGE}:${env.BUILD_ID}
                 """,
-                to: 'aghaaleedurrani54@gmail.com' // Replace with admin email
+                to: 'fatimaqurban3599@gmail.com' 
             )
         }
     }
